@@ -1,24 +1,39 @@
 package kazuki.app.realmandgroupie
 
 import android.os.Bundle
+import android.util.Log
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.GroupieViewHolder
+import kazuki.app.realmandgroupie.models.Todo
+import kazuki.app.realmandgroupie.models.TodoItem
 
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
+
+        val adapter = GroupAdapter<GroupieViewHolder>()
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
+
+        adapter.add(TodoItem())
+        adapter.add(TodoItem())
+        adapter.add(TodoItem())
+        adapter.add(TodoItem())
+
+        item_list_layout.adapter = adapter
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
